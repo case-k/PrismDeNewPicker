@@ -5,7 +5,17 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismDeNewPicker.Views.MainPage"
              Title="MainPage">
+  
   <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Label Text="{Binding Title}" />
+    
+    <Picker HeightRequest="40"
+            Title="せんたくして"
+            ItemsSource="{Binding Users}"
+            ItemDisplayBinding="{Binding Name, StringFormat='バル{0}'}"
+            SelectedItem="{Binding SelectedUser, Mode=OneWayToSource}"/>
+    
+    <Label Text="{Binding SelectedUser.Name, StringFormat='バル{0} が選択されますた'}" />
+    
   </StackLayout>
+  
 </ContentPage>

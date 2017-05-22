@@ -7,18 +7,31 @@ using System.Linq;
 
 namespace PrismDeNewPicker.ViewModels
 {
+    public class User
+    {
+        public string Name { get; set; }
+    }
+
+
     public class MainPageViewModel : BindableBase, INavigationAware
     {
-        private string _title;
-        public string Title
+        public IEnumerable<User> Users { get; }
+
+
+        private User _selecteduser;
+        public User SelectedUser
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get { return _selecteduser; }
+            set { SetProperty(ref _selecteduser, value); }
         }
 
         public MainPageViewModel()
         {
-
+            Users = new[]{
+                new User { Name = "シャーク" },
+                new User { Name = "イーグル" },
+                new User { Name = "パンサー"},
+            };
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)
@@ -33,8 +46,7 @@ namespace PrismDeNewPicker.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("title"))
-                Title = (string)parameters["title"] + " and Prism";
+
         }
     }
 }
